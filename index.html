@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="te" data-lang="te">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>మన ఊరు – మన అవగాహన | Our Village, Our Awareness</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ramabhadra&family=Noto+Sans+Telugu:wght@400;600;700&family=Noto+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F2F5FA; --surface:#FFFFFF; --ink:#152238; --muted:#55627A; --line:#DDE3EE;
+  --navy:#12284C; --saffron:#FFB627; --saffron-ink:#3B2600;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){color-scheme:dark;
+    --bg:#0C1220; --surface:#151D2D; --ink:#E8EDF5; --muted:#A3AEC2; --line:#26314A;}
+}
+:root[data-theme="dark"]{color-scheme:dark;
+  --bg:#0C1220; --surface:#151D2D; --ink:#E8EDF5; --muted:#A3AEC2; --line:#26314A;}
+
+/* one colour per topic */
+#phone,a[href="#phone"]{--c:#1F6FEB}
+#cyber,a[href="#cyber"]{--c:#D7263D}
+#women,a[href="#women"]{--c:#8E3BBE}
+#marriage,a[href="#marriage"]{--c:#E0457B}
+#driving,a[href="#driving"]{--c:#E9771B}
+#elections,a[href="#elections"]{--c:#2F3E9E}
+#schemes,a[href="#schemes"]{--c:#138A5E}
+#share{--c:#0E7C86}
+
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 76px);scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:"Noto Sans Telugu","Noto Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:18px;line-height:1.7}
+img,iframe{max-width:100%}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--saffron);outline-offset:2px}
+
+html[data-lang="te"] .en{display:none}
+html[data-lang="en"] .te{display:none}
+
+/* header */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--navy)}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--navy);color:#fff;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 16px;
+  box-shadow:0 2px 12px rgba(18,40,76,.25)}
+.brand{font-family:"Ramabhadra","Noto Sans Telugu",sans-serif;font-size:1.15rem;line-height:1.2;color:#fff;text-decoration:none}
+.toggle{display:flex;background:rgba(255,255,255,.14);border-radius:999px;padding:4px}
+.toggle button{border:0;background:transparent;color:#fff;font:inherit;font-size:1rem;font-weight:600;
+  padding:8px 16px;border-radius:999px;cursor:pointer;min-height:44px}
+.toggle button[aria-pressed="true"]{background:var(--saffron);color:var(--saffron-ink)}
+
+.wrap{max-width:900px;margin:0 auto;padding:0 16px}
+
+/* hero */
+.hero{margin-top:16px;padding:34px 24px 30px;border-radius:26px;color:#fff;position:relative;overflow:hidden;
+  background:linear-gradient(140deg,#12284C 0%,#1D4F91 55%,#138A5E 100%)}
+.hero::after{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,182,39,.55),rgba(255,182,39,0) 70%)}
+.hero h1{position:relative;font-family:"Ramabhadra","Noto Sans Telugu",sans-serif;font-weight:400;
+  font-size:clamp(2.2rem,7.5vw,3.6rem);line-height:1.12;margin:0 0 12px}
+.hero p{position:relative;margin:0;max-width:58ch;font-size:1.05rem;color:rgba(255,255,255,.88)}
+
+/* helplines */
+.help{margin:18px 0 6px;background:var(--saffron);color:var(--saffron-ink);border-radius:22px;padding:18px 16px 16px}
+.help h2{margin:0 0 12px;font-size:1.05rem;font-weight:700}
+.numbers{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.num{display:block;background:#fff;color:#2A1B00;text-decoration:none;border-radius:16px;padding:10px 12px;min-height:44px;
+  box-shadow:0 2px 0 rgba(59,38,0,.15)}
+.num b{display:block;font-family:"Noto Sans",sans-serif;font-size:1.9rem;line-height:1.1;color:#C2410C}
+.num span{font-size:.86rem;line-height:1.35;display:block}
+.num:active{transform:translateY(1px);box-shadow:none}
+
+/* topic tiles */
+.chips{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;padding:18px 0 4px}
+.chips a{text-decoration:none;color:#fff;background:var(--c);border-radius:18px;padding:14px;min-height:92px;
+  display:flex;flex-direction:column;justify-content:space-between;gap:8px;font-weight:600;line-height:1.3}
+.chips a span[aria-hidden]{font-size:1.7rem;line-height:1}
+.chips a:active{filter:brightness(.92)}
+
+/* sections */
+section.topic{background:var(--surface);border-radius:24px;padding:0 20px 24px;margin:22px 0;overflow:hidden;
+  border:1px solid var(--line);border-top:0}
+.topic > header{display:flex;align-items:center;gap:12px;margin:0 -20px 18px;padding:18px 20px;background:var(--c);color:#fff}
+.icon{font-size:1.9rem;line-height:1;flex:0 0 auto;background:rgba(255,255,255,.2);width:52px;height:52px;border-radius:14px;display:grid;place-items:center}
+.topic h2{font-family:"Ramabhadra","Noto Sans Telugu",sans-serif;font-weight:400;font-size:clamp(1.45rem,4.5vw,1.95rem);line-height:1.25;margin:0}
+.intro{color:var(--muted);margin:0 0 14px;font-size:1.05rem}
+ul.points{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+ul.points li{padding:12px 14px 12px 40px;border-radius:14px;position:relative;
+  background:color-mix(in srgb,var(--c) 7%,var(--surface))}
+ul.points li::before{content:"";position:absolute;left:15px;top:22px;width:12px;height:12px;border-radius:4px;background:var(--c)}
+.remember{margin:16px 0 0;border-left:6px solid var(--c);border-radius:6px 14px 14px 6px;padding:14px 16px;font-weight:600;
+  background:color-mix(in srgb,var(--c) 14%,var(--surface))}
+.remember small{display:block;font-weight:700;color:var(--c);font-size:.85rem}
+
+.banner{background:var(--saffron);color:var(--saffron-ink);border-radius:14px;padding:14px 16px;margin:0 0 16px;font-weight:600}
+h3{font-size:1.1rem;margin:24px 0 10px;color:var(--c)}
+ol.steps{margin:0;padding:0;list-style:none;counter-reset:s}
+ol.steps li{counter-increment:s;position:relative;padding:10px 0 14px 52px;min-height:44px}
+ol.steps li:not(:last-child)::after{content:"";position:absolute;left:17px;top:46px;bottom:0;width:2px;background:color-mix(in srgb,var(--c) 30%,transparent)}
+ol.steps li::before{content:counter(s);position:absolute;left:0;top:8px;width:36px;height:36px;border-radius:50%;
+  background:var(--c);color:#fff;font-family:"Noto Sans",sans-serif;font-weight:700;display:grid;place-items:center}
+
+/* schemes */
+.schemes{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+.scheme{border-radius:18px;padding:16px;background:color-mix(in srgb,var(--c) 7%,var(--surface));border-top:5px solid var(--c)}
+.scheme h3{margin:0 0 6px;font-size:1.2rem}
+.scheme dl{margin:0;font-size:.95rem}
+.scheme dt{font-weight:700;color:var(--muted);font-size:.82rem;margin-top:8px}
+.scheme dd{margin:0}
+.note{font-size:.9rem;color:var(--muted);margin-top:12px}
+
+/* videos */
+.videos{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(210px,1fr))}
+.video{border-radius:16px;overflow:hidden;background:var(--bg);border:1px solid var(--line)}
+.video .frame{position:relative;aspect-ratio:16/9;background:#000}
+.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.yt-tile{display:block;text-decoration:none;color:var(--ink)}
+.tile{position:relative;display:grid;place-items:center;aspect-ratio:16/9;font-size:2.6rem;
+  background:linear-gradient(135deg,var(--c),color-mix(in srgb,var(--c) 55%,#000))}
+.play{position:absolute;right:10px;bottom:10px;width:46px;height:32px;border-radius:9px;background:#FF0000;display:grid;place-items:center}
+.play::after{content:"";border-left:13px solid #fff;border-top:8px solid transparent;border-bottom:8px solid transparent;margin-left:3px}
+.video .t{display:block;padding:12px 14px;font-weight:600;line-height:1.35}
+.video .s{display:block;font-size:.82rem;color:var(--muted);font-weight:400}
+
+/* share */
+.share{display:grid;gap:20px;grid-template-columns:auto 1fr;align-items:center}
+#qr{background:#fff;padding:10px;border-radius:14px;width:max-content;border:4px solid var(--c)}
+.btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+.btn{font:inherit;font-size:1rem;font-weight:600;border:0;border-radius:12px;padding:12px 18px;min-height:44px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center}
+.btn.wa{background:#1FA855;color:#fff}
+.btn.copy{background:color-mix(in srgb,var(--c) 14%,var(--surface));color:var(--ink)}
+@media (max-width:560px){.share{grid-template-columns:1fr}}
+
+/* team + footer */
+footer{padding:0 0 40px;color:var(--muted);font-size:.9rem;text-align:center}
+.team{background:var(--navy);color:#fff;border-radius:24px;padding:24px 20px;margin:22px 0;text-align:left}
+.team h2{font-family:"Ramabhadra","Noto Sans Telugu",sans-serif;font-weight:400;font-size:1.6rem;margin:0 0 4px;color:var(--saffron)}
+.team .college{font-weight:700;margin:0;font-size:1.1rem}
+.team .sub{color:rgba(255,255,255,.75);margin:0 0 14px}
+.members{list-style:none;margin:0;padding:0;display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(230px,1fr))}
+.members li{background:rgba(255,255,255,.09);border-radius:12px;padding:10px 14px;display:flex;flex-direction:column}
+.members b{font-size:1rem}
+.members span{font-family:"Noto Sans",sans-serif;font-size:.85rem;color:rgba(255,255,255,.7);letter-spacing:.3px}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <a class="brand" href="#home"><span class="te">మన ఊరు – మన అవగాహన</span><span class="en">Our Village, Our Awareness</span></a>
+  <div class="toggle" role="group" aria-label="Language">
+    <button type="button" data-set="te" aria-pressed="true">తెలుగు</button>
+    <button type="button" data-set="en" aria-pressed="false">English</button>
+  </div>
+</div>
+
+<main class="wrap" id="home">
+  <div class="hero">
+    <h1><span class="te">మన ఊరు –<br>మన అవగాహన</span><span class="en">Our village,<br>our awareness</span></h1>
+    <p><span class="te">ఫోన్ వాడకం, సైబర్ భద్రత, మహిళల భద్రత, ఎన్నికలు, ప్రభుత్వ పథకాలు — అన్నీ ఒకే చోట, తెలుగులో, వీడియోలతో.</span><span class="en">Phone skills, online safety, women’s safety, elections and government schemes — all in one place, with videos.</span></p>
+  </div>
+
+  <div class="help" aria-labelledby="help-h">
+    <h2 id="help-h"><span class="te">ఆపదలో ఉంటే నొక్కి కాల్ చేయండి</span><span class="en">In trouble? Tap a number to call</span></h2>
+    <div class="numbers" id="numbers"></div>
+  </div>
+
+  <nav class="chips" id="chips" aria-label="Topics"></nav>
+
+  <div id="topics"></div>
+
+  <section class="topic" id="share">
+    <header><span class="icon" aria-hidden="true">📲</span>
+      <h2><span class="te">ఈ వెబ్‌సైట్‌ను షేర్ చేయండి</span><span class="en">Share this website</span></h2></header>
+    <div class="share">
+      <div id="qr" aria-label="QR code for this website"></div>
+      <div>
+        <p class="intro" style="margin:0"><span class="te">ఈ QR కోడ్‌ను సచివాలయం, రేషన్ షాప్, బడి దగ్గర అతికించండి. ఫోన్ కెమెరాతో స్కాన్ చేస్తే ఈ సైట్ తెరుచుకుంటుంది.</span><span class="en">Print this QR code and put it up at the secretariat, ration shop or school. Scanning it with a phone camera opens this site.</span></p>
+        <div class="btns">
+          <a class="btn wa" id="wa" target="_blank" rel="noopener"><span class="te">వాట్సాప్‌లో పంపండి</span><span class="en">Send on WhatsApp</span></a>
+          <button class="btn copy" id="copy" type="button"><span class="te">లింక్ కాపీ చేయండి</span><span class="en">Copy link</span></button>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap">
+  <section class="team" id="team">
+    <h2><span class="te">ప్రాజెక్ట్ బృందం</span><span class="en">Project team</span></h2>
+    <p class="college"><span class="te">లకిరెడ్డి బాలిరెడ్డి ఇంజనీరింగ్ కళాశాల</span><span class="en">Lakireddy Bali Reddy College of Engineering</span></p>
+    <p class="sub"><span class="te">కమ్యూనిటీ సర్వీస్ ప్రాజెక్ట్ · III B.Tech I సెమిస్టర్</span><span class="en">Community Service Project, III B.Tech I Semester</span></p>
+    <ul class="members">
+      <li><b>Padarthi Dhana Lakshmi</b><span>24761A05N3</span></li>
+      <li><b>Phirangi Likhitha</b><span>24761A05N4</span></li>
+      <li><b>Pillala Usha Sri</b><span>24761A05N5</span></li>
+      <li><b>Potnuru Venkat Varun</b><span>24761A05N6</span></li>
+      <li><b>Ravi Srija</b><span>24761A05N8</span></li>
+    </ul>
+  </section>
+  <p><span class="te">ఈ సమాచారం అవగాహన కోసం మాత్రమే. అధికారిక వివరాల కోసం మీ గ్రామ/వార్డు సచివాలయాన్ని సంప్రదించండి.</span><span class="en">This information is for awareness only. For official details, contact your village or ward secretariat.</span></p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+/* ---------------------------------------------------------------
+   HOW TO ADD YOUR OWN YOUTUBE VIDEOS
+   Each video below has  id: ""  — paste a YouTube video ID there
+   (the part after "v=" in the link, e.g. youtube.com/watch?v=AbC123xyz → "AbC123xyz")
+   and the video will play inside the page. If id is empty, the card
+   opens a YouTube search for that topic in Telugu instead.
+---------------------------------------------------------------- */
+
+const HELPLINES = [
+  {n:"112",  te:"అత్యవసర సేవలు (పోలీస్, అగ్నిమాపక)", en:"Emergency (police, fire)"},
+  {n:"1930", te:"సైబర్ మోసం ఫిర్యాదు", en:"Cyber fraud complaint"},
+  {n:"181",  te:"మహిళా హెల్ప్‌లైన్", en:"Women helpline"},
+  {n:"1098", te:"చైల్డ్‌లైన్ (బాల్య వివాహం)", en:"Childline (child marriage)"},
+  {n:"108",  te:"అంబులెన్స్", en:"Ambulance"},
+  {n:"1950", te:"ఓటర్ హెల్ప్‌లైన్", en:"Voter helpline"}
+];
+
+const L = {
+  remember:{te:"గుర్తుంచుకోండి",en:"Remember"},
+  videos:{te:"వీడియోలు",en:"Videos"},
+  watch:{te:"యూట్యూబ్‌లో చూడండి",en:"Watch on YouTube"},
+  polling:{te:"పోలింగ్ రోజు ఏమి చేయాలి",en:"What to do on polling day"},
+  what:{te:"ఏమి లభిస్తుంది",en:"What you get"},
+  who:{te:"ఎవరు అర్హులు",en:"Who can get it"},
+  docs:{te:"కావలసిన పత్రాలు",en:"Documents needed"},
+  where:{te:"ఎక్కడ దరఖాస్తు చేయాలి",en:"Where to apply"}
+};
+
+const TOPICS = [
+{ id:"phone", icon:"📱",
+  title:{te:"ఫోన్ వాడకం నేర్చుకోండి",en:"Learn to use your phone"},
+  chip:{te:"ఫోన్ వాడకం",en:"Phone basics"},
+  intro:{te:"స్మార్ట్‌ఫోన్‌తో కాల్స్, వాట్సాప్, ఫోటోలు, డబ్బు చెల్లింపులు సులభంగా చేయవచ్చు. కింది వీడియోలు చూసి నేర్చుకోండి.",
+         en:"With a smartphone you can call, chat on WhatsApp, take photos and pay money easily. Watch the videos below to learn step by step."},
+  points:[
+    {te:"కాల్స్: నంబర్‌ను వ్యక్తి పేరుతో కాంటాక్ట్స్‌లో సేవ్ చేసుకోండి — ఎవరు కాల్ చేస్తున్నారో తెలుస్తుంది.",en:"Calls: save a number in Contacts with the person’s name so you know who is calling."},
+    {te:"వాట్సాప్: ఇంటర్నెట్‌తో కుటుంబసభ్యులకు ఉచితంగా మెసేజ్‌లు, వాయిస్ మెసేజ్‌లు, వీడియో కాల్స్ చేయవచ్చు.",en:"WhatsApp: send messages, voice notes and video calls to family for free over the internet."},
+    {te:"కెమెరా: ఆధార్, రసీదులు వంటి పత్రాల ఫోటోలు తీసి ఫోన్‌లో భద్రంగా ఉంచుకోండి.",en:"Camera: take photos of documents like Aadhaar and receipts, and keep them safely in your phone."},
+    {te:"UPI చెల్లింపులు (ఫోన్‌పే, గూగుల్ పే, పేటీఎం): QR కోడ్ స్కాన్ చేసి డబ్బు చెల్లించవచ్చు. UPI PIN మీ ATM PIN లాంటిది — అది మీకు మాత్రమే తెలియాలి.",en:"UPI payments (PhonePe, Google Pay, Paytm): pay by scanning a QR code. Your UPI PIN is like your ATM PIN — only you should know it."},
+    {te:"ఆన్‌లైన్ ఫారాలు: సర్టిఫికెట్లకు దరఖాస్తు, పథకాల స్టేటస్ ఫోన్‌లోనే చూడవచ్చు. సహాయం కావాలంటే గ్రామ సచివాలయానికి వెళ్ళండి.",en:"Online forms: apply for certificates and check scheme status from your phone. For help, visit the village secretariat."}
+  ],
+  remember:{te:"ఇంట్లో యువకుల సహాయంతో ప్రాక్టీస్ చేయండి. నెమ్మదిగా నేర్చుకున్నా పర్వాలేదు.",en:"Practise with a young family member. It’s fine to learn slowly."},
+  videos:[
+    {te:"స్మార్ట్‌ఫోన్ ప్రాథమికాలు",en:"Smartphone basics for beginners",q:"smartphone ela vadali telugu beginners",id:""},
+    {te:"వాట్సాప్ ఎలా వాడాలి",en:"How to use WhatsApp",q:"whatsapp ela use cheyali telugu",id:""},
+    {te:"UPI తో సురక్షితంగా చెల్లించడం",en:"Paying safely with UPI",q:"phonepe google pay ela use cheyali telugu",id:""},
+    {te:"ఫోటో తీసి వాట్సాప్‌లో పంపడం",en:"Taking and sending photos",q:"mobile lo photo teesi whatsapp lo ela pampali telugu",id:""}
+  ]},
+
+{ id:"cyber", icon:"🔒",
+  title:{te:"సైబర్ మోసాల నుండి జాగ్రత్త",en:"Stay safe from online fraud"},
+  chip:{te:"OTP మోసాలు",en:"OTP & fraud"},
+  intro:{te:"మోసగాళ్ళు బ్యాంక్, పోలీసు, ప్రభుత్వ అధికారుల్లా నటించి ఫోన్ చేస్తారు. ఈ నియమాలు గుర్తుంచుకోండి.",
+         en:"Fraudsters call pretending to be from the bank, police or government. Remember these rules."},
+  points:[
+    {te:"OTP, UPI PIN, ATM PIN, CVV ఎవరికీ చెప్పకండి — బ్యాంక్ నుండి అని చెప్పినా సరే. బ్యాంకులు ఎప్పుడూ వీటిని అడగవు.",en:"Never share your OTP, UPI PIN, ATM PIN or CVV with anyone — even someone who says they’re from the bank. Banks never ask for them."},
+    {te:"డబ్బు స్వీకరించడానికి PIN అవసరం లేదు. డబ్బు రావాలంటే PIN ఎంటర్ చేయమంటే అది మోసమే.",en:"You never need a PIN to receive money. If someone asks you to enter your PIN to ‘receive’ money, it’s fraud."},
+    {te:"నకిలీ కాల్స్/మెసేజ్‌లు: ‘మీ KYC గడువు ముగిసింది’, ‘ఈ రాత్రి కరెంట్ కట్ చేస్తాం’, ‘మీకు లాటరీ వచ్చింది’, ‘మిమ్మల్ని డిజిటల్ అరెస్ట్ చేశాం’. నిజమైన అధికారులు ఇలా మాట్లాడరు.",en:"Fake calls and messages say things like ‘your KYC has expired’, ‘your electricity will be cut tonight’, ‘you’ve won a lottery’ or ‘you are under digital arrest’. Real officials don’t talk like this."},
+    {te:"వాట్సాప్/SMS లో వచ్చే తెలియని లింకులు తెరవకండి, .apk యాప్‌లు ఇన్‌స్టాల్ చేయకండి. అపరిచితులు చెప్పినా స్క్రీన్-షేరింగ్ యాప్‌లు వేయకండి.",en:"Don’t open unknown links or install .apk apps sent on WhatsApp or SMS. Don’t install screen-sharing apps because a stranger asks."},
+    {te:"మోసపోతే వెంటనే 1930 కి కాల్ చేయండి — ఎంత త్వరగా చెబితే డబ్బు ఆపే అవకాశం అంత ఎక్కువ. cybercrime.gov.in లో ఫిర్యాదు చేసి, మీ బ్యాంకుకూ తెలియజేయండి.",en:"If you’re cheated, call 1930 immediately — the sooner you report, the better the chance of stopping the money. Also complain at cybercrime.gov.in and tell your bank."}
+  ],
+  remember:{te:"తొందర పెట్టడం, భయపెట్టడం మోసగాళ్ళ ఆయుధాలు. కాల్ భయపెడితే ఫోన్ పెట్టేసి, నమ్మకమైన వారిని అడగండి.",en:"Hurry and fear are a fraudster’s tools. If a call makes you panic, hang up and ask someone you trust."},
+  videos:[
+    {te:"OTP మోసాల గురించి అవగాహన",en:"OTP fraud awareness",q:"OTP fraud awareness telugu",id:""},
+    {te:"డిజిటల్ అరెస్ట్ మోసం",en:"The ‘digital arrest’ scam",q:"digital arrest scam awareness telugu",id:""},
+    {te:"UPI మోసాల నుండి జాగ్రత్త",en:"Staying safe from UPI fraud",q:"UPI fraud awareness telugu",id:""}
+  ]},
+
+{ id:"women", icon:"🛡️",
+  title:{te:"మహిళల భద్రత",en:"Women’s safety"},
+  chip:{te:"మహిళల భద్రత",en:"Women’s safety"},
+  intro:{te:"ప్రతి మహిళకు భయం లేకుండా జీవించే హక్కు ఉంది. ఆపదలో సహాయం ఎలా పొందాలో తెలుసుకోండి.",
+         en:"Every woman has the right to live without fear. Know how to get help when you need it."},
+  points:[
+    {te:"ఏ అత్యవసరంలోనైనా 112 కి కాల్ చేయండి. గృహ హింస, కౌన్సెలింగ్ లేదా ఏ సమస్యకైనా మహిళా హెల్ప్‌లైన్ 181 కి కాల్ చేయండి.",en:"In any emergency, call 112. For domestic violence, counselling or any other trouble, call the Women Helpline 181."},
+    {te:"112 India యాప్ ఇన్‌స్టాల్ చేసుకోండి — SOS బటన్ నొక్కితే మీ లొకేషన్‌తో సహా పోలీసులకు సమాచారం వెళ్తుంది.",en:"Install the 112 India app — pressing its SOS button alerts the police with your location."},
+    {te:"ఎవరైనా వేధిస్తే నమ్మకమైన వారికి చెప్పండి, ఆధారాలు (స్క్రీన్‌షాట్లు, మెసేజ్‌లు) దాచుకోండి, ఏ పోలీస్ స్టేషన్‌లోనైనా ఫిర్యాదు చేయండి. ఘటన వేరే చోట జరిగినా ఫిర్యాదు తీసుకోవాలి (జీరో FIR).",en:"If someone harasses you, tell a trusted person, keep evidence (screenshots, messages) and complain at any police station. They must take your complaint even if it happened elsewhere (Zero FIR)."},
+    {te:"ఆన్‌లైన్ వేధింపులు, మార్ఫింగ్ ఫోటోలు: cybercrime.gov.in లో ఫిర్యాదు చేయండి. ప్రైవేట్ ఫోటోలు ఎవరికీ పంపకండి.",en:"Online harassment or morphed photos: report at cybercrime.gov.in. Never send private photos to anyone."},
+    {te:"మీ హక్కులు: గృహ హింస నుండి, పని ప్రదేశంలో వేధింపుల నుండి చట్టం మహిళలను రక్షిస్తుంది. ఉచిత న్యాయ సహాయం కోసం 15100 కి కాల్ చేయండి.",en:"Your rights: the law protects women from domestic violence and from harassment at work. For free legal help, call 15100."}
+  ],
+  remember:{te:"సహాయం అడగడం సిగ్గు కాదు. గ్రామ సచివాలయంలోని మహిళా పోలీసు కూడా మార్గదర్శనం చేస్తారు.",en:"Asking for help is nothing to be ashamed of. The Mahila Police at your village secretariat can also guide you."},
+  videos:[
+    {te:"మహిళల భద్రత చిట్కాలు",en:"Women’s safety tips",q:"women safety awareness telugu",id:""},
+    {te:"112 India యాప్ SOS ఎలా వాడాలి",en:"Using the 112 India app SOS",q:"112 India app SOS how to use",id:""},
+    {te:"గృహ హింస – మీ హక్కులు",en:"Domestic violence: your rights",q:"domestic violence act awareness telugu",id:""}
+  ]},
+
+{ id:"marriage", icon:"🎓",
+  title:{te:"బాల్య వివాహం వద్దు",en:"Say no to child marriage"},
+  chip:{te:"బాల్య వివాహం",en:"Child marriage"},
+  intro:{te:"చిన్న వయసులో పెళ్ళి పిల్లల ఆరోగ్యాన్ని, చదువును, భవిష్యత్తును దెబ్బతీస్తుంది.",
+         en:"Marriage at a young age harms a child’s health, education and future."},
+  points:[
+    {te:"పెళ్ళికి చట్టబద్ధమైన వయసు: అమ్మాయిలకు 18, అబ్బాయిలకు 21 సంవత్సరాలు (బాల్య వివాహ నిషేధ చట్టం, 2006).",en:"Legal age for marriage: 18 for girls and 21 for boys (Prohibition of Child Marriage Act, 2006)."},
+    {te:"ఆరోగ్య ప్రమాదాలు: చిన్న వయసులో గర్భం తల్లికి, బిడ్డకు ప్రమాదం — రక్తహీనత, కష్టమైన ప్రసవం, బిడ్డ తక్కువ బరువు.",en:"Health risks: early pregnancy is dangerous for both the girl and the baby — anaemia, difficult delivery, low birth weight."},
+    {te:"సామాజిక నష్టం: అమ్మాయిలు చదువు మానేస్తారు, ఉద్యోగం చేసి సొంత కాళ్ళ మీద నిలబడే అవకాశం కోల్పోతారు.",en:"Social harm: girls drop out of school and lose the chance to work and stand on their own feet."},
+    {te:"ఇది నేరం: బాల్య వివాహం జరిపించినవారికి, ప్రోత్సహించినవారికి 2 సంవత్సరాల వరకు జైలు, ₹1 లక్ష వరకు జరిమానా పడవచ్చు.",en:"It’s a crime: anyone who arranges, conducts or promotes a child marriage can get up to 2 years in jail and a fine of up to ₹1 lakh."},
+    {te:"బాల్య వివాహాన్ని ఆపడానికి చైల్డ్‌లైన్ 1098 లేదా 112 కి కాల్ చేయండి, లేదా అంగన్‌వాడీ కార్యకర్త, మహిళా పోలీసు, గ్రామ సచివాలయానికి తెలియజేయండి.",en:"To stop a child marriage, call Childline 1098 or 112, or tell the anganwadi worker, Mahila Police or village secretariat."}
+  ],
+  remember:{te:"ముందు అమ్మాయిని చదివించండి. చదువుకున్న అమ్మాయి కుటుంబాన్ని బలంగా నిలబెడుతుంది.",en:"Educate the girl first. A girl who studies makes the whole family stronger."},
+  videos:[
+    {te:"బాల్య వివాహం వల్ల నష్టాలు",en:"Harms of child marriage",q:"child marriage awareness telugu",id:""},
+    {te:"బాల్య వివాహ నిషేధ చట్టం",en:"The child marriage law explained",q:"bala vivaha nishedha chattam telugu",id:""}
+  ]},
+
+{ id:"driving", icon:"🏍️",
+  title:{te:"మైనర్లు వాహనం నడపకూడదు",en:"No driving under 18"},
+  chip:{te:"మైనర్ డ్రైవింగ్",en:"Underage driving"},
+  intro:{te:"పిల్లలకు బైక్ తాళాలు ఇవ్వడం ప్రేమ కాదు — ప్రమాదం.",en:"Handing a child the bike keys isn’t love — it’s a risk."},
+  points:[
+    {te:"18 ఏళ్ళ లోపు వారు కారు, గేర్ బైక్ నడపకూడదు. 16–18 ఏళ్ళ వారికి 50cc వరకు గేర్ లేని వాహనానికి మాత్రమే లైసెన్స్ వస్తుంది.",en:"Under 18, no one may drive a car or a geared bike. Teens aged 16–18 can only get a licence for gearless two-wheelers up to 50cc."},
+    {te:"పిల్లలకు ట్రాఫిక్‌ను ఎదుర్కొనే అనుభవం, అవగాహన ఉండవు — చాలా రోడ్డు ప్రమాదాల్లో యువకులే బలవుతున్నారు.",en:"Children lack the experience and judgement for traffic — young riders are among the most frequent road accident victims."},
+    {te:"మైనర్ వాహనం నడుపుతూ పట్టుబడితే తల్లిదండ్రులు లేదా వాహన యజమానికి ₹25,000 జరిమానా, 3 సంవత్సరాల వరకు జైలు (మోటార్ వాహనాల చట్టం, సెక్షన్ 199A).",en:"If a minor is caught driving, the parent or vehicle owner can face a ₹25,000 fine and up to 3 years in jail (Motor Vehicles Act, Section 199A)."},
+    {te:"వాహన రిజిస్ట్రేషన్ ఒక సంవత్సరం రద్దు అవుతుంది, ఆ పిల్లవాడికి 25 ఏళ్ళు వచ్చేవరకు లైసెన్స్ రాదు.",en:"The vehicle’s registration can be cancelled for a year, and the child can’t get a licence until age 25."}
+  ],
+  remember:{te:"ఎప్పుడూ హెల్మెట్ పెట్టుకోండి. బైక్‌పై ముగ్గురు ప్రయాణించకండి.",en:"Always wear a helmet. Never ride three on a bike."},
+  videos:[
+    {te:"మైనర్ డ్రైవింగ్ – శిక్షలు",en:"Underage driving penalties",q:"minor driving penalty telugu",id:""},
+    {te:"విద్యార్థులకు రోడ్డు భద్రత",en:"Road safety for students",q:"road safety awareness telugu students",id:""}
+  ]},
+
+{ id:"elections", icon:"🗳️",
+  title:{te:"ఓటు ఎలా వేయాలి",en:"How to cast your vote"},
+  chip:{te:"ఎన్నికలు",en:"Elections"},
+  banner:{te:"ఆంధ్రప్రదేశ్ స్థానిక సంస్థల ఎన్నికలు: MPTC / ZPTC పోలింగ్ నవంబర్ 3న. గ్రామ పంచాయతీ ఎన్నికలు నవంబర్ 26 నుండి మూడు దశల్లో. మీ గ్రామ తేదీని సచివాలయంలో నిర్ధారించుకోండి.",
+          en:"AP local body elections: MPTC / ZPTC polling on 3 November. Gram Panchayat elections in three phases from 26 November. Confirm your village’s date at the secretariat."},
+  intro:{te:"మీ ఓటు మీ హక్కు. మీ గ్రామాన్ని ఎవరు నడిపించాలో నిర్ణయించేది మీ ఓటే.",en:"Your vote is your right. It decides who leads your village."},
+  points:[
+    {te:"ఎవరు ఓటు వేయవచ్చు: 18 ఏళ్ళు నిండి, ఓటర్ల జాబితాలో పేరు ఉన్న భారత పౌరులు.",en:"Who can vote: Indian citizens aged 18 or above whose name is on the voters’ list."},
+    {te:"ముందే మీ పేరు చూసుకోండి: 1950 కి కాల్ చేయండి, Voter Helpline యాప్ వాడండి, లేదా BLO / సచివాలయంలో అడగండి.",en:"Check your name in advance: call 1950, use the Voter Helpline app, or ask your booth level officer (BLO) or the secretariat."},
+    {te:"ఓటర్ ఐడీ కార్డ్ (EPIC) తీసుకెళ్ళండి. అది లేకపోతే ఎన్నికల సంఘం అనుమతించిన ఆధార్ వంటి ఇతర ఫోటో ఐడీ తీసుకెళ్ళండి.",en:"Carry your voter ID card (EPIC). If you don’t have it, carry another photo ID allowed by the Election Commission, such as Aadhaar."},
+    {te:"మీ ఓటు రహస్యం — మీరు ఎవరికి ఓటు వేశారో ఎవరూ తెలుసుకోలేరు.",en:"Your vote is secret — no one can find out whom you voted for."},
+    {te:"ఓటు కోసం డబ్బు, మద్యం, బహుమతులు ఇవ్వడం, తీసుకోవడం నేరం. ఎన్నికల అధికారులకు తెలియజేయండి లేదా 112 కి కాల్ చేయండి.",en:"Giving or taking money, liquor or gifts for votes is a crime. Report it to election officials or call 112."},
+    {te:"వృద్ధులు, దివ్యాంగులు బూత్‌లో సహాయం పొందవచ్చు — పోలింగ్ సిబ్బందిని అడగండి.",en:"Elderly and disabled voters can get help at the booth — ask the polling staff."}
+  ],
+  steps:[
+    {te:"మీ పోలింగ్ బూత్‌కు వెళ్ళి క్యూలో నిలబడండి.",en:"Go to your polling booth and join the queue."},
+    {te:"పోలింగ్ అధికారి మీ పేరు, ఐడీ చూస్తారు.",en:"The polling officer checks your name and ID."},
+    {te:"ఎడమ చూపుడు వేలికి చెరగని సిరా వేసి, రిజిస్టర్‌లో సంతకం తీసుకుంటారు.",en:"Indelible ink is put on your left forefinger and you sign the register."},
+    {te:"ఒంటరిగా ఓటింగ్ కంపార్ట్‌మెంట్‌లోకి వెళ్ళండి.",en:"Go into the voting compartment alone."},
+    {te:"బ్యాలెట్ పేపర్ అయితే: ఇచ్చిన ముద్రను మీ అభ్యర్థి గుర్తుపై వేసి, పేపర్ మడిచి బ్యాలెట్ బాక్స్‌లో వేయండి. EVM అయితే: మీ అభ్యర్థి గుర్తు పక్కన ఉన్న నీలి బటన్ నొక్కి, బీప్ వచ్చేవరకు ఆగండి.",en:"Ballot paper: stamp the seal you’re given on your candidate’s symbol, fold the paper and drop it in the ballot box. EVM: press the blue button next to your candidate’s symbol and wait for the beep."},
+    {te:"పంచాయతీ ఎన్నికల్లో సర్పంచ్‌కు, వార్డు సభ్యుడికి వేరువేరు బ్యాలెట్లు ఉండవచ్చు — రెండింటిలోనూ ఓటు వేయండి.",en:"Panchayat elections may have separate ballots for Sarpanch and Ward Member — vote on both."}
+  ],
+  remember:{te:"మీ గ్రామానికి మంచి చేస్తారని మీరు నమ్మిన వారికి ఓటు వేయండి. ఎవరూ మిమ్మల్ని బలవంతం చేయలేరు.",en:"Vote for whoever you believe will serve your village best. No one can force your choice."},
+  videos:[
+    {te:"బ్యాలెట్ పేపర్‌తో ఓటు ఎలా వేయాలి",en:"Voting with a ballot paper",q:"ballot paper vote ela veyali telugu",id:""},
+    {te:"EVM లో ఓటు ఎలా వేయాలి",en:"Voting on an EVM",q:"EVM lo vote ela veyali telugu",id:""},
+    {te:"ఓటర్ జాబితాలో పేరు చూడటం",en:"Checking your name on the voter list",q:"voter list lo peru ela check cheyali telugu",id:""}
+  ]},
+
+{ id:"schemes", icon:"🏛️",
+  title:{te:"ప్రభుత్వ పథకాలు",en:"AP government schemes"},
+  chip:{te:"ప్రభుత్వ పథకాలు",en:"Govt schemes"},
+  intro:{te:"అర్హత ఉన్న ప్రతి కుటుంబం ఈ పథకాల ప్రయోజనం పొందవచ్చు. దరఖాస్తు కోసం మీ గ్రామ/వార్డు సచివాలయానికి వెళ్ళండి.",
+         en:"Every eligible family can benefit from these schemes. Visit your village or ward secretariat to apply."},
+  cards:[
+    {name:{te:"తల్లికి వందనం",en:"Talliki Vandanam"},
+     what:{te:"బడికి వెళ్ళే ప్రతి పిల్లవాడికి ఏడాదికి ₹15,000, తల్లి బ్యాంకు ఖాతాలో (కొంత మొత్తం బడి నిర్వహణకు ఉంచుతారు).",en:"₹15,000 a year for every school-going child, paid to the mother’s bank account (a small part is kept for school upkeep)."},
+     who:{te:"1–12 తరగతుల పిల్లల తల్లులు లేదా సంరక్షకులు.",en:"Mothers or guardians of children in Classes 1–12."},
+     docs:{te:"తల్లి, పిల్లల ఆధార్, రైస్ కార్డ్, ఆధార్‌తో లింక్ అయిన బ్యాంకు ఖాతా.",en:"Aadhaar of mother and child, rice card, bank account linked to Aadhaar."},
+     where:{te:"స్కూల్ హెడ్‌మాస్టర్ లేదా గ్రామ/వార్డు సచివాలయం.",en:"School headmaster or village/ward secretariat."}},
+    {name:{te:"అన్నదాత సుఖీభవ",en:"Annadata Sukhibhava"},
+     what:{te:"రైతులకు ఏడాదికి ₹20,000 (PM-కిసాన్ ₹6,000 కలిపి).",en:"₹20,000 a year for farmers (including ₹6,000 from PM-Kisan)."},
+     who:{te:"వ్యవసాయ భూమి ఉన్న రైతు కుటుంబాలు.",en:"Farming families with agricultural land."},
+     docs:{te:"ఆధార్, పట్టాదారు పాస్‌బుక్ / భూమి రికార్డులు, బ్యాంకు ఖాతా.",en:"Aadhaar, pattadar passbook or land records, bank account."},
+     where:{te:"రైతు సేవా కేంద్రం లేదా గ్రామ సచివాలయం.",en:"Rythu Seva Kendram or village secretariat."}},
+    {name:{te:"దీపం-2",en:"Deepam-2"},
+     what:{te:"ఏడాదికి మూడు ఉచిత గ్యాస్ సిలిండర్లు. డెలివరీ సమయంలో చెల్లించిన డబ్బు మీ బ్యాంకు ఖాతాలో తిరిగి జమ అవుతుంది.",en:"Three free LPG cylinders a year. You pay at delivery and the money is credited back to your bank account."},
+     who:{te:"రైస్ కార్డ్, గ్యాస్ కనెక్షన్ ఉన్న కుటుంబాలు.",en:"Families with a rice card and an LPG connection."},
+     docs:{te:"ఆధార్, రైస్ కార్డ్, గ్యాస్ కనెక్షన్, బ్యాంకు ఖాతా.",en:"Aadhaar, rice card, gas connection, bank account."},
+     where:{te:"మీ గ్యాస్ ఏజెన్సీ లేదా గ్రామ సచివాలయం.",en:"Your gas agency or village secretariat."}},
+    {name:{te:"స్త్రీ శక్తి",en:"Stree Shakti"},
+     what:{te:"ఆంధ్రప్రదేశ్‌లో APSRTC బస్సుల్లో (నిర్దిష్ట బస్సు రకాల్లో) మహిళలకు ఉచిత ప్రయాణం.",en:"Free travel for women in APSRTC buses within Andhra Pradesh (on selected bus types)."},
+     who:{te:"ఆంధ్రప్రదేశ్‌లో నివసించే మహిళలు, బాలికలు.",en:"Women and girls living in Andhra Pradesh."},
+     docs:{te:"కండక్టర్‌కు ఆధార్ లేదా ఇతర ఐడీ చూపించండి.",en:"Show Aadhaar or another ID to the conductor."},
+     where:{te:"దరఖాస్తు అవసరం లేదు.",en:"No application needed."}},
+    {name:{te:"ఎన్టీఆర్ భరోసా పింఛన్లు",en:"NTR Bharosa Pensions"},
+     what:{te:"ఇంటికే నెలవారీ పింఛన్ — వృద్ధులు, వితంతువులకు ₹4,000; దివ్యాంగులకు ఇంకా ఎక్కువ.",en:"Monthly pension delivered at home — ₹4,000 for the elderly and widows, more for disabled persons."},
+     who:{te:"వృద్ధులు (60+), వితంతువులు, దివ్యాంగులు, ఒంటరి మహిళలు, ఇతర అర్హులు.",en:"Elderly (60+), widows, disabled persons, single women and other eligible groups."},
+     docs:{te:"ఆధార్, రైస్ కార్డ్, వయసు ధ్రువీకరణ, అవసరమైతే వైకల్య / మరణ ధ్రువపత్రం.",en:"Aadhaar, rice card, age proof, and a disability or death certificate where needed."},
+     where:{te:"గ్రామ/వార్డు సచివాలయం (వెల్ఫేర్ అసిస్టెంట్).",en:"Village/ward secretariat (welfare assistant)."}},
+    {name:{te:"అన్న క్యాంటీన్",en:"Anna Canteen"},
+     what:{te:"₹5 కే భోజనం.",en:"A meal for ₹5."},
+     who:{te:"ఎవరైనా.",en:"Anyone."},
+     docs:{te:"ఏమీ అవసరం లేదు.",en:"None."},
+     where:{te:"పట్టణాలు, నగరాల్లోని అన్న క్యాంటీన్లు.",en:"Anna Canteens in towns and cities."}}
+  ],
+  note:{te:"మొత్తాలు, నియమాలు మారవచ్చు. దరఖాస్తు చేసే ముందు సచివాలయంలో నిర్ధారించుకోండి.",en:"Amounts and rules can change. Always confirm at your secretariat before applying."},
+  videos:[
+    {te:"AP ప్రభుత్వ పథకాల వివరాలు",en:"AP government schemes explained",q:"AP government schemes telugu 2026",id:""},
+    {te:"పథకం స్టేటస్ ఆన్‌లైన్‌లో చూడటం",en:"Checking scheme status online",q:"gsws scheme status check telugu",id:""}
+  ]}
+];
+
+/* ---------- rendering ---------- */
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const t = o => `<span class="te">${esc(o.te)}</span><span class="en">${esc(o.en)}</span>`;
+
+document.getElementById("numbers").innerHTML = HELPLINES.map(h =>
+  `<a class="num" href="tel:${h.n}"><b>${h.n}</b>${t(h)}</a>`).join("");
+
+document.getElementById("chips").innerHTML = TOPICS.map(s =>
+  `<a href="#${s.id}"><span aria-hidden="true">${s.icon}</span>${t(s.chip)}</a>`).join("");
+
+/* Accepts a full YouTube link (watch, youtu.be, shorts) or just the 11-character video ID */
+function ytId(v){
+  const s = (v.id || "").trim();
+  if (!s) return "";
+  const m = s.match(/(?:v=|youtu\.be\/|embed\/|shorts\/)([\w-]{11})/);
+  return m ? m[1] : (/^[\w-]{11}$/.test(s) ? s : "");
+}
+function videoCard(v, icon){
+  const id = ytId(v);
+  if (id){
+    return `<div class="video"><div class="frame"><iframe src="https://www.youtube-nocookie.com/embed/${esc(id)}" title="${esc(v.en)}" loading="lazy" allow="accelerometer; encrypted-media; picture-in-picture" allowfullscreen></iframe></div>
+      <div style="padding:12px 14px"><span class="t">${t(v)}</span></div></div>`;
+  }
+  const url = "https://www.youtube.com/results?search_query=" + encodeURIComponent(v.q);
+  return `<div class="video"><a class="yt-tile" href="${url}" target="_blank" rel="noopener">
+    <span class="tile"><span aria-hidden="true">${icon}</span><span class="play" aria-hidden="true"></span></span>
+    <span class="t">${t(v)}<span class="s">${t(L.watch)}</span></span></a></div>`;
+}
+
+document.getElementById("topics").innerHTML = TOPICS.map(s => `
+<section class="topic" id="${s.id}">
+  <header><span class="icon" aria-hidden="true">${s.icon}</span><h2>${t(s.title)}</h2></header>
+  ${s.banner ? `<div class="banner">${t(s.banner)}</div>` : ""}
+  <p class="intro">${t(s.intro)}</p>
+  ${s.points ? `<ul class="points">${s.points.map(p => `<li>${t(p)}</li>`).join("")}</ul>` : ""}
+  ${s.steps ? `<h3>${t(L.polling)}</h3><ol class="steps">${s.steps.map(p => `<li>${t(p)}</li>`).join("")}</ol>` : ""}
+  ${s.cards ? `<div class="schemes">${s.cards.map(c => `
+    <article class="scheme"><h3>${t(c.name)}</h3><dl>
+      <dt>${t(L.what)}</dt><dd>${t(c.what)}</dd>
+      <dt>${t(L.who)}</dt><dd>${t(c.who)}</dd>
+      <dt>${t(L.docs)}</dt><dd>${t(c.docs)}</dd>
+      <dt>${t(L.where)}</dt><dd>${t(c.where)}</dd>
+    </dl></article>`).join("")}</div>` : ""}
+  ${s.note ? `<p class="note">${t(s.note)}</p>` : ""}
+  ${s.remember ? `<div class="remember"><small>${t(L.remember)}</small>${t(s.remember)}</div>` : ""}
+  <h3>${t(L.videos)}</h3>
+  <div class="videos">${s.videos.map(v => videoCard(v, s.icon)).join("")}</div>
+</section>`).join("");
+
+/* ---------- language toggle ---------- */
+function setLang(l){
+  document.documentElement.dataset.lang = l;
+  document.documentElement.lang = l;
+  document.querySelectorAll(".toggle button").forEach(b => b.setAttribute("aria-pressed", b.dataset.set === l));
+  try { localStorage.setItem("lang", l); } catch(e) {}
+}
+document.querySelectorAll(".toggle button").forEach(b => b.addEventListener("click", () => setLang(b.dataset.set)));
+try { const saved = localStorage.getItem("lang"); if (saved === "en" || saved === "te") setLang(saved); } catch(e) {}
+
+/* ---------- share ---------- */
+const pageUrl = location.href.split("#")[0];
+try { new QRCode(document.getElementById("qr"), {text: pageUrl, width: 150, height: 150}); }
+catch(e) { document.getElementById("qr").style.display = "none"; }
+document.getElementById("wa").href = "https://wa.me/?text=" + encodeURIComponent("మన ఊరు – మన అవగాహన: " + pageUrl);
+document.getElementById("copy").addEventListener("click", async e => {
+  const btn = e.currentTarget;
+  try {
+    await navigator.clipboard.writeText(pageUrl);
+    btn.innerHTML = '<span class="te">లింక్ కాపీ అయింది</span><span class="en">Link copied</span>';
+  } catch(err) {
+    btn.innerHTML = '<span class="te">కాపీ కాలేదు — అడ్రస్ బార్ నుండి కాపీ చేయండి</span><span class="en">Couldn’t copy — copy from the address bar</span>';
+  }
+});
+</script>
+</body>
+</html>
